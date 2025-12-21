@@ -10,6 +10,7 @@ f.close()
 partA = 0
 partB = 0
 
+# --------- Part A ---------
 # Extract list of operators
 nVals = len(lines)-1
 oper = lines[nVals].split()
@@ -36,7 +37,7 @@ for i in range(len(oper)):
 
 
     
-# --------- Part B ------
+# --------- Part B ---------
 
 # Create input data as 2-d array of characters
 dataStr=[]
