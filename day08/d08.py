@@ -27,7 +27,6 @@ for i in range(len(xyzJ)):
 distInfo.sort()
 
 circuits = []
-nConnect = 0
 #Step through connections, starting with nearest boxes
 for i in range(len(distInfo)):
     a=distInfo[i][1]
@@ -44,20 +43,16 @@ for i in range(len(distInfo)):
     # Several possibilities:
     # Both ends found, but different circuits -> connect and merge circuits
     if afound>=0 and bfound>=0 and afound!=bfound:
-        nConnect+=1
         circuits[afound] = [p for p in circuits[afound]] + [p for p in circuits[bfound] ]
         circuits.pop(bfound)
     # One end found, append the other to existing circuit
     elif afound>=0 and bfound==-1:
-        nConnect+=1
         circuits[afound].append(b)
     # Other end found, connect first        
     elif bfound>=0 and afound==-1:
-        nConnect+=1
         circuits[bfound].append(a)
     # Neither end in existing circuits, start new circuit
     elif afound==-1 and bfound==-1:
-        nConnect+=1
         circuits.append([a,b])
     # Note: both ends already in same circuit => no-operation, not included in if/else
     
