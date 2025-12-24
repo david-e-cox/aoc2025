@@ -43,7 +43,7 @@ for i in range(len(distInfo)):
     # Several possibilities:
     # Both ends found, but different circuits -> connect and merge circuits
     if afound>=0 and bfound>=0 and afound!=bfound:
-        circuits[afound] = [p for p in circuits[afound]] + [p for p in circuits[bfound] ]
+        circuits[afound] += [p for p in circuits[bfound]]
         circuits.pop(bfound)
     # One end found, append the other to existing circuit
     elif afound>=0 and bfound==-1:
