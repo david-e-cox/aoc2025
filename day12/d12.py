@@ -80,33 +80,36 @@ def verifyRotations(pkgSet):
 
             
 partA = 0
-partB = 0
 
 pkgSet,pkgSiz,area = parseInput(lines)
 #verifyInput(pkgSet,area)
 #verifyRotations(pkgSet)
 
-partA=0        
-optSum=0
-    
+# Bounding cases, perfect packing and outer-box packing
+# These can be used to refine the cases which need optimization
+# Turns out... this is all we need to know
+reqSum=0
+ovrSum=0        
 for a in area:
     room = a[0][0]*a[0][1]
     req=0
-    opt=0
+    ovr=0
 
     for i in range(len(a[1])):
-        opt += a[1][i] * pkgSiz[i][0]
+        ovr += a[1][i] * pkgSiz[i][0]
         req += a[1][i] * pkgSiz[i][1]
-  #  print("{}: {} {}/{}".format(a,room,req,opt))
+    #print("{}: {} {}/{}".format(a,room,req,ovr))
     if req<=room:
-        partA+=1
+        reqSum+=1
 
-    if opt<=room:
-        optSum+=1
+    if ovr<=room:
+        ovrSum+=1
 
-print("Well Damn.... {}=={}".format(partA,optSum))
+
+print("Well Damn.... {}=={}".format(reqSum,ovrSum))
+partA = reqSum
 
 print("The answer to Part A is {0:d}".format(partA))
-print("The answer to Part B is {0:d}".format(partB))
+
 
 
